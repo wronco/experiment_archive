@@ -29,6 +29,7 @@ class ExperimentsController < ApplicationController
   # POST /experiments.json
   def create
     @experiment = Experiment.new(experiment_params)
+    @experiment.user = current_user
 
     respond_to do |format|
       if @experiment.save
