@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @experiment.user %>
+</p>
+
+<p>
+  <strong>Screenshot original:</strong>
+  <%= @experiment.screenshot_original %>
+</p>
+
+<p>
+  <strong>Screenshot variation:</strong>
+  <%= @experiment.screenshot_variation %>
+</p>
+
+<p>
+  <strong>Winner:</strong>
+  <%= @experiment.winner %>
+</p>
+
+<p>
+  <strong>Confidence:</strong>
+  <%= @experiment.confidence %>
+</p>
+
+<p>
+  <strong>Brief:</strong>
+  <%= @experiment.brief %>
+</p>
+
+<p>
+  <strong>Hypothesis:</strong>
+  <%= @experiment.hypothesis %>
+</p>
+
+<p>
+  <strong>Experiment url:</strong>
+  <%= @experiment.experiment_url %>
+</p>
+
+<p>
+  <strong>Result url:</strong>
+  <%= @experiment.result_url %>
+</p>
+
+<%= link_to 'Edit', edit_experiment_path(@experiment) %> |
+<%= link_to 'Back', experiments_path %>

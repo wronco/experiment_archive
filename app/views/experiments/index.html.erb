@@ -1,0 +1,41 @@
+<h1>Listing experiments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Screenshot original</th>
+      <th>Screenshot variation</th>
+      <th>Winner</th>
+      <th>Confidence</th>
+      <th>Brief</th>
+      <th>Hypothesis</th>
+      <th>Experiment url</th>
+      <th>Result url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @experiments.each do |experiment| %>
+      <tr>
+        <td><%= experiment.user %></td>
+        <td><%= experiment.screenshot_original %></td>
+        <td><%= experiment.screenshot_variation %></td>
+        <td><%= experiment.winner %></td>
+        <td><%= experiment.confidence %></td>
+        <td><%= experiment.brief %></td>
+        <td><%= experiment.hypothesis %></td>
+        <td><%= experiment.experiment_url %></td>
+        <td><%= experiment.result_url %></td>
+        <td><%= link_to 'Show', experiment %></td>
+        <td><%= link_to 'Edit', edit_experiment_path(experiment) %></td>
+        <td><%= link_to 'Destroy', experiment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Experiment', new_experiment_path %>

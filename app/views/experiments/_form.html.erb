@@ -1,0 +1,53 @@
+<%= form_for(@experiment) do |f| %>
+  <% if @experiment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@experiment.errors.count, "error") %> prohibited this experiment from being saved:</h2>
+
+      <ul>
+      <% @experiment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :screenshot_original %><br>
+    <%= f.text_field :screenshot_original %>
+  </div>
+  <div class="field">
+    <%= f.label :screenshot_variation %><br>
+    <%= f.text_field :screenshot_variation %>
+  </div>
+  <div class="field">
+    <%= f.label :winner %><br>
+    <%= f.text_field :winner %>
+  </div>
+  <div class="field">
+    <%= f.label :confidence %><br>
+    <%= f.text_field :confidence %>
+  </div>
+  <div class="field">
+    <%= f.label :brief %><br>
+    <%= f.text_area :brief %>
+  </div>
+  <div class="field">
+    <%= f.label :hypothesis %><br>
+    <%= f.text_area :hypothesis %>
+  </div>
+  <div class="field">
+    <%= f.label :experiment_url %><br>
+    <%= f.text_field :experiment_url %>
+  </div>
+  <div class="field">
+    <%= f.label :result_url %><br>
+    <%= f.text_field :result_url %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
