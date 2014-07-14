@@ -1,25 +1,27 @@
-<h1>Listing experiments</h1>
-
-<table>
+<%- model_class = Experiment -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Experiment %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Screenshot original</th>
-      <th>Screenshot variation</th>
-      <th>Winner</th>
-      <th>Confidence</th>
-      <th>Brief</th>
-      <th>Hypothesis</th>
-      <th>Experiment url</th>
-      <th>Result url</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:screenshot_original) %></th>
+      <th><%= model_class.human_attribute_name(:screenshot_variation) %></th>
+      <th><%= model_class.human_attribute_name(:winner) %></th>
+      <th><%= model_class.human_attribute_name(:confidence) %></th>
+      <th><%= model_class.human_attribute_name(:brief) %></th>
+      <th><%= model_class.human_attribute_name(:hypothesis) %></th>
+      <th><%= model_class.human_attribute_name(:experiment_url) %></th>
+      <th><%= model_class.human_attribute_name(:result_url) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @experiments.each do |experiment| %>
       <tr>
-        <td><%= experiment.user %></td>
+        <td><%= experiment.id %></td>
         <td><%= experiment.screenshot_original %></td>
         <td><%= experiment.screenshot_variation %></td>
         <td><%= experiment.winner %></td>
@@ -28,14 +30,21 @@
         <td><%= experiment.hypothesis %></td>
         <td><%= experiment.experiment_url %></td>
         <td><%= experiment.result_url %></td>
-        <td><%= link_to 'Show', experiment %></td>
-        <td><%= link_to 'Edit', edit_experiment_path(experiment) %></td>
-        <td><%= link_to 'Destroy', experiment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l experiment.created_at, format: :long %></td>
+        <td>
+          <%= link_to experiment_path(experiment), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to experiment_path(experiment), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Experiment', new_experiment_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_experiment_path,
+            :class => 'btn btn-primary' %>
