@@ -62,12 +62,12 @@ class User < ActiveRecord::Base
   def refresh_running?
     if optimizely_refresh_started_at.present? 
       if last_optimizely_updated_at.blank? || optimizely_refresh_started_at < last_optimizely_updated_at
-        true
+        return true
       end
     end
     false
   end
-  
+
   def get(url)
     uri      = URI.parse("https://www.optimizelyapis.com/experiment/v1/#{url}/")
     https    = Net::HTTP.new(uri.host, uri.port)
