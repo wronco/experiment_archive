@@ -1,0 +1,112 @@
+# encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 20140716144048) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "experiment_goals", force: true do |t|
+    t.integer  "experiment_id"
+    t.integer  "goal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "experiment_goals", ["experiment_id"], name: "index_experiment_goals_on_experiment_id", using: :btree
+  add_index "experiment_goals", ["goal_id"], name: "index_experiment_goals_on_goal_id", using: :btree
+
+  create_table "experiments", force: true do |t|
+    t.integer  "user_id"
+    t.string   "screenshot_original"
+    t.string   "screenshot_variation"
+    t.string   "winner"
+    t.string   "confidence"
+    t.text     "brief"
+    t.text     "hypothesis"
+    t.string   "experiment_url"
+    t.string   "result_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "optimizely_id"
+    t.string   "status"
+    t.datetime "optimizely_created_at"
+    t.datetime "optimizely_last_updated_at"
+    t.text     "description"
+  end
+
+  add_index "experiments", ["user_id"], name: "index_experiments_on_user_id", using: :btree
+
+  create_table "goals", force: true do |t|
+    t.string   "title"
+    t.integer  "goal_type"
+    t.integer  "optimizely_id"
+    t.string   "event"
+    t.boolean  "revenue_tracking"
+    t.string   "metric"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                      default: "", null: false
+    t.string   "encrypted_password",         default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",              default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "optimizely_api_key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "last_optimizely_updated_at"
+    t.text     "last_optimizely_status"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "variations", force: true do |t|
+    t.integer  "experiment_id"
+    t.string   "screenshot_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "optimizely_id",          limit: 8
+    t.string   "screencap_file_name"
+    t.string   "screencap_content_type"
+    t.integer  "screencap_file_size"
+    t.datetime "screencap_updated_at"
+  end
+
+  add_index "variations", ["experiment_id"], name: "index_variations_on_experiment_id", using: :btree
+
+end

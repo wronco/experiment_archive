@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: goals
+#
+#  id               :integer          not null, primary key
+#  title            :string(255)
+#  goal_type        :integer
+#  optimizely_id    :integer
+#  event            :string(255)
+#  revenue_tracking :boolean
+#  metric           :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  goal_type: 1
+  optimizely_id: 1
+  event: MyString
+  revenue_tracking: false
+  metric: MyString
+
+two:
+  title: MyString
+  goal_type: 1
+  optimizely_id: 1
+  event: MyString
+  revenue_tracking: false
+  metric: MyString

@@ -1,20 +1,13 @@
 <%= form_for @experiment, :html => { :class => 'form-horizontal form-model' } do |f| %>
   <div class="form-group">
-    <%= f.label :screenshot_original, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :screenshot_original, :class => 'text-field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :screenshot_variation, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :screenshot_variation, :class => 'text-field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
     <%= f.label :winner, :class => 'control-label col-md-2' %>
     <div class="col-md-10">
-      <%= f.text_field :winner, :class => 'text-field form-control' %>
+      <% @experiment.variations.each do |v| %>
+        <label for="winningVariation">
+          <input type="radio" name="winningVariation" id="winningVariation" value="<%= v.optimizely_id %>" />
+          <%= image_tag v.screencap.url(:thumb) %>
+        </label>
+      <% end %>
     </div>
   </div>
   <div class="form-group">
@@ -38,19 +31,19 @@
   <div class="form-group">
     <%= f.label :experiment_url, :class => 'control-label col-md-2' %>
     <div class="col-md-10">
-      <%= f.text_field :experiment_url, :class => 'text-field form-control' %>
+      <%= f.text_field :experiment_url, :class => 'text-field form-control disabled', disabled: 'disabled' %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :result_url, :class => 'control-label col-md-2' %>
     <div class="col-md-10">
-      <%= f.text_field :result_url, :class => 'text-field form-control' %>
+      <%= f.text_field :result_url, :class => 'text-field form-control disabled', disabled: 'disabled' %>
     </div>
   </div>
 
   <div class="form-group">
     <div class='col-md-offset-2 col-md-10'>
-      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= f.submit 'Save Changes', :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                   experiments_path, :class => 'btn btn-default' %>
     </div>

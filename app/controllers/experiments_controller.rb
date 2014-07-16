@@ -1,79 +1,19 @@
 class ExperimentsController < ApplicationController
 
   #->Prelang (scaffolding:rails/scope_to_user)
-  before_filter :require_user_signed_in, only: [:new, :edit, :create, :update, :destroy]
+  before_filter :require_user_signed_in
 
-  before_action :set_experiment, only: [:show, :edit, :update, :destroy]
-
-  # GET /experiments
-  # GET /experiments.json
   def index
-    @experiments = Experiment.all
+    @experiments = current_user.experiments.order('optimizely_last_updated_at DESC')
   end
 
-  # GET /experiments/1
-  # GET /experiments/1.json
-  def show
-  end
-
-  # GET /experiments/new
-  def new
-    @experiment = Experiment.new
-  end
-
-  # GET /experiments/1/edit
   def edit
+    @experiment = current_user.experiments.find(params[:id])
   end
 
-  # POST /experiments
-  # POST /experiments.json
-  def create
-    @experiment = Experiment.new(experiment_params)
-    @experiment.user = current_user
-
-    respond_to do |format|
-      if @experiment.save
-        format.html { redirect_to @experiment, notice: 'Experiment was successfully created.' }
-        format.json { render :show, status: :created, location: @experiment }
-      else
-        format.html { render :new }
-        format.json { render json: @experiment.errors, status: :unprocessable_entity }
-      end
-    end
+  def refresh
+    current_user.delay.refresh_from_optimizely
+    redirect_to experiments_path, notice: "Optimizely refreshing now. Reload this page in a couple of minutes to see the results."
   end
 
-  # PATCH/PUT /experiments/1
-  # PATCH/PUT /experiments/1.json
-  def update
-    respond_to do |format|
-      if @experiment.update(experiment_params)
-        format.html { redirect_to @experiment, notice: 'Experiment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @experiment }
-      else
-        format.html { render :edit }
-        format.json { render json: @experiment.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /experiments/1
-  # DELETE /experiments/1.json
-  def destroy
-    @experiment.destroy
-    respond_to do |format|
-      format.html { redirect_to experiments_url, notice: 'Experiment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_experiment
-      @experiment = Experiment.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def experiment_params
-      params.require(:experiment).permit(:user_id, :screenshot_original, :screenshot_variation, :winner, :confidence, :brief, :hypothesis, :experiment_url, :result_url)
-    end
 end

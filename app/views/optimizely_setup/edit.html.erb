@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h1><%=t ".title", default: "My Optimizely Account" %></h1>
+</div>
+
+<%= form_for(current_user, url: update_optimizely_setup_path, html: { method: :put, class: "form-horizontal form-user"}) do |f| %>
+
+  <fieldset>
+    <div class="form-group">
+      <%= f.label :optimizely_api_key, class: "control-label col-md-4" %>
+      <div class="col-md-8">
+        <%= f.text_field :optimizely_api_key, class: "text-field form-control", html: {spellcheck: "false"} %>
+      </div>
+    </div>
+  </fieldset>
+     
+  <div class="form-group">
+    <div class="col-md-offset-4 col-md-8">
+      <%= f.submit "Save", class: "btn btn-primary" %>
+    </div>
+  </div>
+
+
+<% end %>
+

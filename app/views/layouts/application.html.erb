@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ExperimentArchive</title>
+  <title>Experiment Archive</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,10 +9,15 @@
     <%= analytics_init if Rails.env.production? %></head>
 <body>
 <%= render partial: "elements/navbar" %>
+<% if defined?(Devise) && user_signed_in? && current_user.optimizely_api_key.blank? %>
+  <div class="alert alert-danger alert-dismissable">
+    Please connect your <%= link_to "Optimizely account", edit_optimizely_setup_path %>.
+  </div>
+<% end %>
 <%= bootstrap_flash %>
 
-
+<div class="container">
 <%= yield %>
-
+</div>
 </body>
 </html>

@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: variations
+#
+#  id             :integer          not null, primary key
+#  experiment_id  :integer
+#  screenshot_url :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  optimizely_id  :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  experiment_id: 
+  screenshot_url: MyString
+
+two:
+  experiment_id: 
+  screenshot_url: MyString
