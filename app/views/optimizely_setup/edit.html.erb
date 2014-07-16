@@ -1,16 +1,19 @@
 <div class="page-header">
-  <h1><%=t ".title", default: "My Optimizely Account" %></h1>
-  <p>
-    Find your Optimizely API key at
-    <%= link_to "https://www.optimizely.com/tokens", "https://www.optimizely.com/tokens" %>
-    <br>It looks like this: <strong>1123abcded23dadad3badcafe1:b42ba5fa</strong>
-  </p>
-  <p>
-    To get screenshots, you ALSO need to uncheck "Disable the force variation parameter" under Dashbaord -> Project Settings:
-    <br>
-    <%= image_tag "optimizely_settings.png" %>
-
+  <h1><%=t ".title", default: "Optimizely Account" %></h1>
 </div>
+
+<h3>Step 1</h3>
+<p>
+  Find your Optimizely API key at
+  <%= link_to "https://www.optimizely.com/tokens", "https://www.optimizely.com/tokens" %>
+  <br>It looks like this: <strong>1123abcded23dadad3badcafe1:b42ba5fa</strong>
+</p>
+<h3>Step 2</h3>
+<p>
+  To get screenshots, you ALSO need to uncheck "Disable the force variation parameter" under Dashbaord -> Project Settings:
+  <br>
+  <%= image_tag "optimizely_settings.png" %>
+</p>
 
 <%= form_for(current_user, url: update_optimizely_setup_path, html: { method: :put, class: "form-horizontal form-user"}) do |f| %>
 
