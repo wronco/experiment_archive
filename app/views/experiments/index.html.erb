@@ -1,6 +1,10 @@
 <table class="table table-striped">
   <%= form_tag(refresh_optimizely_path, method: :post) do %>
-    <% if current_user.last_optimizely_updated_at.present? %>
+    <% if current_user.refresh_running? %>
+      <div class="alert alert-warning">
+        Optimizely scan running now. Refresh this page soon for results.
+      </div>
+    <% elsif current_user.last_optimizely_updated_at.present? %>
       <div class="alert alert-success">
         Optimizely last scanned <%= distance_of_time_in_words_to_now(current_user.last_optimizely_updated_at) %> ago.
         <br>

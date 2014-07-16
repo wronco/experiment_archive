@@ -8,7 +8,7 @@ class OptimizelySetupController < ApplicationController
 
   def update
     if current_user.update(optimizely_api_key: params[:user][:optimizely_api_key])
-      redirect_to edit_optimizely_setup_path, notice: 'Woorrrrddddddd.'
+      redirect_to experiments_path, notice: 'Thanks! Your API key is set up.'
     else
       render :edit
     end

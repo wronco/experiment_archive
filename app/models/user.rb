@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
 
 
   def refresh_from_optimizely
+    self.optimizely_refresh_started_at = Time.now
+    save
     projects = self.get("projects")
     goals = []
     experiments_count = 0
@@ -57,6 +59,15 @@ class User < ActiveRecord::Base
     save
   end
 
+  def refresh_running?
+    if optimizely_refresh_started_at.present? 
+      if last_optimizely_updated_at.blank? || optimizely_refresh_started_at < last_optimizely_updated_at
+        true
+      end
+    end
+    false
+  end
+  
   def get(url)
     uri      = URI.parse("https://www.optimizelyapis.com/experiment/v1/#{url}/")
     https    = Net::HTTP.new(uri.host, uri.port)
