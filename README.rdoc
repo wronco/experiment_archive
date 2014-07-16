@@ -1,28 +1,16 @@
-== README
+== Experiment Archiver
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+My attempt to automate Kyle Rush's "Experiment Archive Template" from his (Mozcon 2014 talk)[http://bit.ly/1mhvqth]
 
-Things you may want to cover:
+==== What Does It Do
 
-* Ruby version
+* Takes screenshots of the A and B (and C, etc) versions of each of your Optimizely experiments.
 
-* System dependencies
+* Lets you annotate each experiment with a brief, hypothesis, confidence level, etc.
 
-* Configuration
+==== How To Use It
+You'll need your Optimizely API key to use this - find it on your Optimizely account page under "Tokens" (https://www.optimizely.com/tokens)
 
-* Database creation
+==== Questions Or Comments
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+I built this in like three hours, sorry for any bugs! Please send questions, comments, or suggestions to me, or fork for your own use.
