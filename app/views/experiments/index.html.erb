@@ -2,7 +2,7 @@
   <%= form_tag(refresh_optimizely_path, method: :post) do %>
     <% if current_user.refresh_running? %>
       <div class="alert alert-warning">
-        Optimizely scan running now. Refresh this page soon for results.
+        Optimizely scan running now. Refresh this page to see progress.
       </div>
     <% elsif current_user.last_optimizely_updated_at.present? %>
       <div class="alert alert-success">

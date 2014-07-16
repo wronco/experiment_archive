@@ -5,6 +5,11 @@
     <%= link_to "https://www.optimizely.com/tokens", "https://www.optimizely.com/tokens" %>
     <br>It looks like this: <strong>1123abcded23dadad3badcafe1:b42ba5fa</strong>
   </p>
+  <p>
+    To get screenshots, you ALSO need to uncheck "Disable the force variation parameter" under Dashbaord -> Project Settings:
+    <br>
+    <%= image_tag "optimizely_settings.png" %>
+
 </div>
 
 <%= form_for(current_user, url: update_optimizely_setup_path, html: { method: :put, class: "form-horizontal form-user"}) do |f| %>
