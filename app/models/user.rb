@@ -51,8 +51,8 @@ class User < ActiveRecord::Base
           goal.update_from_optimizely_json(current_goal)
           exp.goals << goal unless exp.goals.include?(goal)
         end
+        experiments_count += 1
       end
-      experiments_count += 1
     end
     self.last_optimizely_updated_at = Time.now
     self.last_optimizely_status = "#{experiments_count} experiments updated in #{projects.count} projects"
@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
 
   def refresh_running?
     if optimizely_refresh_started_at.present? 
-      if last_optimizely_updated_at.blank? || optimizely_refresh_started_at < last_optimizely_updated_at
+      if last_optimizely_updated_at.blank? || optimizely_refresh_started_at > last_optimizely_updated_at
         return true
       end
     end
