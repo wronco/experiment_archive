@@ -38,16 +38,20 @@
         </td>      
         <td>
           <% experiment.variations.each do |v| %>
-            <%= image_tag(v.screencap.url(:thumb)) unless v.screencap.blank? %>
+            <% if v.screencap.present? %>
+              <% if experiment.winner.to_i == v.optimizely_id.to_i %>
+                <%= image_tag(v.screencap.url(:thumb), style: "border: 5px solid #75CC51;") %>
+              <% else %>
+                <%= image_tag(v.screencap.url(:thumb)) %>
+              <% end %>
+            <% end %>
+            <% if experiment.winner == v.optimizely_id %></div><% end %>
           <% end %>
         </td>
         <td><%= experiment.status %></td>
         <td>
-          <%= link_to experiment_path(experiment), :class => 'btn btn-xs', :title => "details" do %>
-            <%= glyph 'info-sign' %>
-          <%- end -%>
           <%= link_to edit_experiment_path(experiment), :class => 'btn btn-xs', :title => "edit" do %>
-            <%= glyph 'pencil' %>
+            details
           <%- end -%>
         </td>
       </tr>

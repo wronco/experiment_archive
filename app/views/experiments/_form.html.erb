@@ -4,7 +4,8 @@
     <div class="col-md-10">
       <% @experiment.variations.each do |v| %>
         <label for="winningVariation">
-          <input type="radio" name="winningVariation" id="winningVariation" value="<%= v.optimizely_id %>" />
+          <%= f.radio_button :winner, v.optimizely_id %>
+          <!-- <input type="radio" name="winner" id="winner" value="<%= v.optimizely_id %>" /> -->
           <%= image_tag v.screencap.url(:thumb) %>
         </label>
       <% end %>
