@@ -1,6 +1,6 @@
 == Experiment Archiver
 
-My attempt to automate Kyle Rush's "Experiment Archive Template" from his (Mozcon 2014 talk)[http://bit.ly/1mhvqth]
+My attempt to automate Kyle Rush's "Experiment Archive Template" from his Mozcon 2014 talk: http://bit.ly/1mhvqth
 
 ==== What Does It Do
 
