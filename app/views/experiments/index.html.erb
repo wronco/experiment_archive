@@ -12,7 +12,7 @@
         <%= submit_tag "Re Scan Now", class: "btn btn-primary" %>
 
       </div>
-    <% else %>
+    <% elsif current_user.optimizely_api_key.present? %>
       <div class="alert alert-warning">
         Never scanned optimizely account - click "Scan Now" to start
         <%= submit_tag "Scan Now", class: "btn btn-primary" %>
