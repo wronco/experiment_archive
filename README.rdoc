@@ -2,6 +2,8 @@
 
 My attempt to automate Kyle Rush's "Experiment Archive Template" from his Mozcon 2014 talk: http://bit.ly/1mhvqth
 
+    ***NOTE*** It's probably best if you fork this project and just run your own instance!
+
 ==== What Does It Do
 
 * Takes screenshots of the A and B (and C, etc) versions of each of your Optimizely experiments.
